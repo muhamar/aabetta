@@ -13,7 +13,7 @@ import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
-const Login = () => {
+const LoginScreen = ({ navigation }) => {
   return (
     <Block flex middle>
       <StatusBar hidden />
@@ -44,7 +44,7 @@ const Login = () => {
                 </KeyboardAvoidingView>
               </Block>
               <Block flex={0.17} middle style={{ backgroundColor: '#fff', paddingBottom: 20 }}>
-                <Button color="default" style={styles.secondButton}>
+                <Button color="default" style={styles.secondButton} onPress={() => navigation.navigate('Register')}>
                   <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                     BUAT AKUN
                   </Text>
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default LoginScreen;

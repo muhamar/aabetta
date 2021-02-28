@@ -13,54 +13,52 @@ import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
-class Register extends React.Component {
-  render() {
-    return (
-      <Block flex middle>
-        <StatusBar hidden />
-        <ImageBackground source={Images.RegisterBackground} style={{ width, height, zIndex: 1 }}>
-          <Block flex middle>
-            <Block style={styles.registerContainer}>
-              <Block flex>
-                <Block flex={0.17} middle style={{ backgroundColor: '#fff', marginBottom: 20, paddingVertical: 30 }}>
-                  <Text color="#8898AA" size={32} bold>
-                    BUAT AKUN
+const RegisterScreen = ({ navigation }) => {
+  return (
+    <Block flex middle>
+      <StatusBar hidden />
+      <ImageBackground source={Images.RegisterBackground} style={{ width, height, zIndex: 1 }}>
+        <Block flex middle>
+          <Block style={styles.registerContainer}>
+            <Block flex>
+              <Block flex={0.17} middle style={{ backgroundColor: '#fff', marginBottom: 20, paddingVertical: 30 }}>
+                <Text color="#8898AA" size={32} bold>
+                  BUAT AKUN
+                </Text>
+              </Block>
+              <Block flex center>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
+                  <Block middle style={{ marginBottom: 15 }}>
+                    <Input borderless placeholder="Name" iconContent={false} />
+                  </Block>
+                  <Block middle style={{ marginBottom: 15 }}>
+                    <Input borderless placeholder="Username" iconContent={false} />
+                  </Block>
+                  <Block middle>
+                    <Input password borderless placeholder="Password" iconContent={false} />
+                  </Block>
+                  <Block middle>
+                    <Button color="primary" style={styles.mainButton}>
+                      <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+                        BUAT AKUN
+                      </Text>
+                    </Button>
+                  </Block>
+                </KeyboardAvoidingView>
+              </Block>
+              <Block flex={0.17} middle style={{ backgroundColor: '#fff', paddingBottom: 20 }}>
+                <Button color="default" style={styles.secondButton}>
+                  <Text bold size={14} color={argonTheme.COLORS.WHITE} onPress={() => navigation.navigate('Login')}>
+                    LOGIN
                   </Text>
-                </Block>
-                <Block flex center>
-                  <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
-                    <Block middle style={{ marginBottom: 15 }}>
-                      <Input borderless placeholder="Name" iconContent={false} />
-                    </Block>
-                    <Block middle style={{ marginBottom: 15 }}>
-                      <Input borderless placeholder="Username" iconContent={false} />
-                    </Block>
-                    <Block middle>
-                      <Input password borderless placeholder="Password" iconContent={false} />
-                    </Block>
-                    <Block middle>
-                      <Button color="primary" style={styles.mainButton}>
-                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                          BUAT AKUN
-                        </Text>
-                      </Button>
-                    </Block>
-                  </KeyboardAvoidingView>
-                </Block>
-                <Block flex={0.17} middle style={{ backgroundColor: '#fff', paddingBottom: 20 }}>
-                  <Button color="default" style={styles.secondButton}>
-                    <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                      LOGIN
-                    </Text>
-                  </Button>
-                </Block>
+                </Button>
               </Block>
             </Block>
           </Block>
-        </ImageBackground>
-      </Block>
-    );
-  }
+        </Block>
+      </ImageBackground>
+    </Block>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -122,4 +120,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Register;
+export default RegisterScreen;

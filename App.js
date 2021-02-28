@@ -11,6 +11,7 @@ import { enableScreens } from "react-native-screens";
 enableScreens();
 
 import Screens from "./navigation/Screens";
+import AuthNavigation from './navigation/Auth'
 import { Images, articles, argonTheme } from "./constants";
 
 // cache app images
@@ -70,7 +71,7 @@ export default props => {
       <NavigationContainer>
         <GalioProvider theme={argonTheme}>
           <Block flex>
-            <Screens />
+            <AuthNavigation />
           </Block>
         </GalioProvider>
       </NavigationContainer>
@@ -79,45 +80,3 @@ export default props => {
     return null
   }
 }
-
-// export default class App extends React.Component {
-//   state = {
-//     isLoadingComplete: false
-//   };
-
-//   render() {
-//     if (!this.state.isLoadingComplete) {
-//       return (
-//         <AppLoading
-//           startAsync={this._loadResourcesAsync}
-//           onError={this._handleLoadingError}
-//           onFinish={this._handleFinishLoading}
-//         />
-//       );
-//     } else {
-//       return (
-//         <NavigationContainer>
-//           <GalioProvider theme={argonTheme}>
-//             <Block flex>
-//               <Screens />
-//             </Block>
-//           </GalioProvider>
-//         </NavigationContainer>
-//       );
-//     }
-//   }
-
-//   _loadResourcesAsync = async () => {
-//     return Promise.all([...cacheImages(assetImages)]);
-//   };
-
-//   _handleLoadingError = error => {
-//     // In this case, you might want to report the error to your error
-//     // reporting service, for example Sentry
-//     console.warn(error);
-//   };
-
-//   _handleFinishLoading = () => {
-//     this.setState({ isLoadingComplete: true });
-//   };
-// }
