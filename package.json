@@ -14,6 +14,7 @@
     "url": "git+https://github.com/creativetimofficial/argon-react-native.git"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.14.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.0.6",
     "@react-navigation/compat": "^5.0.0",
@@ -21,9 +22,11 @@
     "@react-navigation/native": "5.0.0",
     "@react-navigation/stack": "5.0.0",
     "@use-expo/font": "^2.0.0",
+    "axios": "^0.21.1",
     "expo": "^39.0.0",
     "expo-asset": "~8.2.0",
     "expo-font": "~8.3.0",
+    "form-data": "^4.0.0",
     "galio-framework": "^0.7.1",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
@@ -32,7 +35,10 @@
     "react-native-modal-dropdown": "git+https://github.com/siemiatj/react-native-modal-dropdown.git",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.4",
-    "react-native-screens": "~2.10.1"
+    "react-native-screens": "~2.10.1",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^8.3.0"

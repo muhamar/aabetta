@@ -1,31 +1,27 @@
 import React, {useState} from "react";
+import { Provider, useDispatch } from 'react-redux'
 import { Image } from "react-native";
 import { AppLoading } from "expo";
 import { useFonts } from '@use-expo/font';
 import { Asset } from "expo-asset";
-import { Block, GalioProvider } from "galio-framework";
+import { GalioProvider } from "galio-framework";
 import { NavigationContainer } from "@react-navigation/native";
+import store from './store'
 
-// Before rendering any navigation stack
 import { enableScreens } from "react-native-screens";
 enableScreens();
 
-import Screens from "./navigation/Screens";
-import AuthNavigation from './navigation/Auth'
 import { Images, articles, argonTheme } from "./constants";
+import Main from "./Main";
 
-// cache app images
 const assetImages = [
-  Images.Onboarding,
-  Images.LogoOnboarding,
   Images.Logo,
-  Images.Pro,
   Images.ArgonLogo,
   Images.iOSLogo,
   Images.androidLogo
 ];
 
-// cache product images
+
 articles.map(article => assetImages.push(article.image));
 
 function cacheImages(images) {
@@ -40,6 +36,7 @@ function cacheImages(images) {
 
 export default props => {
   const [isLoadingComplete, setLoading] = useState(false);
+
   let [fontsLoaded] = useFonts({
     'ArgonExtra': require('./assets/font/argon.ttf'),
   });
@@ -49,8 +46,6 @@ export default props => {
   }
 
   function _handleLoadingError(error) {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 
@@ -68,13 +63,13 @@ export default props => {
     );
   } else if(fontsLoaded) {
     return (
-      <NavigationContainer>
-        <GalioProvider theme={argonTheme}>
-          <Block flex>
-            <AuthNavigation />
-          </Block>
-        </GalioProvider>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <GalioProvider theme={argonTheme}>
+            <Main />
+          </GalioProvider>
+        </NavigationContainer>
+      </Provider>
     );
   } else {
     return null
