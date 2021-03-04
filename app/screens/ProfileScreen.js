@@ -27,7 +27,7 @@ const ProfileScreen = () => {
             @{user.username}
           </Text>
           <Block middle padding={15}>
-            <Button color="danger">
+            <Button color="white">
               <Text style={styles.btnText} onPress={handleLogout}>
                 KELUAR
               </Text>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
   },
   btnText: {
-    color: COLORS.WHITE,
+    color: COLORS.DANGER,
     fontFamily: 'Roboto-light',
     letterSpacing: 3,
   },

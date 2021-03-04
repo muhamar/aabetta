@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   TextInput,
   Dimensions,
+  Image,
 } from 'react-native';
 import { Block, Text, Button } from 'galio-framework';
 import { useDispatch } from 'react-redux';
@@ -18,17 +19,21 @@ const AuthScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Block flex style={styles.cardWrapper}>
-          <Block style={styles.header}>
-            <Text h2 style={styles.brand}>
+          <Block middle style={styles.header}>
+            {/* <Text h2 style={styles.brand}>
               AABETTA
-            </Text>
+            </Text> */}
+            <Image
+              source={require('./../assets/images/brand.png')}
+              style={styles.brand}
+            />
           </Block>
           <Block style={styles.card}>
             <Block row>
               <Block flex={0.5}>
                 <TouchableHighlight
                   underlayColor={COLORS.LIGHT_PRIMARY}
-                  onPressIn={() => setToggle(false)}
+                  onPress={() => setToggle(false)}
                   style={[
                     styles.tabItem,
                     !toggle ? styles.tabItemActive : null,
@@ -45,7 +50,7 @@ const AuthScreen = () => {
               <Block flex={0.5}>
                 <TouchableHighlight
                   underlayColor={COLORS.LIGHT_PRIMARY}
-                  onPressIn={() => setToggle(true)}
+                  onPress={() => setToggle(true)}
                   style={[
                     styles.tabItem,
                     toggle ? styles.tabItemActive : null,
@@ -213,13 +218,16 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
-    marginTop: Dimensions.get('screen').height * 0.11,
+    marginTop: Dimensions.get('screen').height * 0.04,
   },
   brand: {
-    textAlign: 'center',
-    fontFamily: 'Roboto-Bold',
-    letterSpacing: 5,
-    color: COLORS.PRIMARY,
+    // textAlign: 'center',
+    // fontFamily: 'Roboto-Bold',
+    // letterSpacing: 5,
+    // color: COLORS.PRIMARY,
+    resizeMode: 'contain',
+    width: 400,
+    height: 250,
   },
   cardWrapper: {
     padding: 20,

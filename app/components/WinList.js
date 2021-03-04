@@ -10,7 +10,7 @@ const WinList = ({ item }) => {
     <TouchableHighlight
       underlayColor={COLORS.LIGHT_PRIMARY}
       style={styles.card}
-      onPressIn={() => {
+      onPress={() => {
         navigation.navigate('Transaction', { item });
       }}>
       <>

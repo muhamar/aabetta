@@ -5,11 +5,18 @@ export const SOCIAL = {
 };
 
 export const THEME = {
-  THEME: '#5166d6',
-  PRIMARY: '#5166d6',
-  DARK_PRIMARY: '#1f3aed',
-  LIGHT_PRIMARY: '#8897ec',
-  BRIGHT_PRIMARY: '#bcc5f4',
+  // THEME: '#5166d6',
+  // PRIMARY: '#5166d6',
+  // DARK_PRIMARY: '#1f3aed',
+  // LIGHT_PRIMARY: '#8897ec',
+  // BRIGHT_PRIMARY: '#bcc5f4',
+
+  THEME: '#f2353c',
+  PRIMARY: '#f2353c',
+  DARK_PRIMARY: '#d60b0b',
+  LIGHT_PRIMARY: '#ff666b',
+  BRIGHT_PRIMARY: '#ffa1a4',
+
   INFO: '#247cf0',
   DARK_INFO: '#0053bf',
   LIGHT_INFO: '#589ffc',

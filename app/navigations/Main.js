@@ -11,6 +11,7 @@ import WinScreen from '../screens/WinScreen';
 import TransactionScreen from '../screens/TransactionScreen';
 import AboutScreen from '../screens/AboutScreen';
 
+import COLORS from '../constans/colors';
 import HomeHeader from '../components/HomeHeader';
 import NavBar from '../components/NavBar';
 
@@ -152,6 +153,9 @@ const Main = () => {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: COLORS.PRIMARY,
+      }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let icon = 'home';

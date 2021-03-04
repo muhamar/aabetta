@@ -8,6 +8,7 @@ const initialState = {
   end: [],
   filtered: [],
   fetched: false,
+  toggle: true,
 };
 
 const lelangReducer = (state = initialState, action) => {
@@ -37,17 +38,19 @@ const lelangReducer = (state = initialState, action) => {
         willCome,
         come,
         end,
-        filtered: come,
+        filtered: state.toggle ? come : willCome,
       };
     case FILTER_COME:
       return {
         ...state,
         filtered: state.come,
+        toggle: true,
       };
     case FILTER_WILL_COME:
       return {
         ...state,
         filtered: state.willCome,
+        toggle: false,
       };
     default:
       return state;

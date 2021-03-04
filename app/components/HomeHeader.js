@@ -1,21 +1,19 @@
 import React, { Component, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TouchableHighlight, TextInput, StyleSheet } from 'react-native';
 import { Block, Text } from 'galio-framework';
 import COLORS from '../constans/colors';
+import NavBar from './NavBar';
 import { filterCome, filterWillCome } from '../store/actions/lelang';
 
 const Tab = () => {
-  const [toggle, setToggle] = useState(true);
   const dispatch = useDispatch();
-
+  const toggle = useSelector((state) => state.lelang.toggle);
   const willComeToggle = () => {
     dispatch(filterWillCome());
-    setToggle(false);
   };
   const comeToggle = () => {
     dispatch(filterCome());
-    setToggle(true);
   };
 
   return (
@@ -23,7 +21,7 @@ const Tab = () => {
       <Block flex={0.5}>
         <TouchableHighlight
           underlayColor={COLORS.BRIGHT_PRIMARY}
-          onPressIn={comeToggle}
+          onPress={comeToggle}
           style={[styles.tab, toggle ? styles.tabActive : null]}>
           <Text style={[styles.tabText, toggle ? styles.tabTextActive : null]}>
             BERLANGSUNG
@@ -33,7 +31,7 @@ const Tab = () => {
       <Block flex={0.5}>
         <TouchableHighlight
           underlayColor={COLORS.BRIGHT_PRIMARY}
-          onPressIn={willComeToggle}
+          onPress={willComeToggle}
           style={[styles.tab, !toggle ? styles.tabActive : null]}>
           <Text style={[styles.tabText, !toggle ? styles.tabTextActive : null]}>
             AKAN DATANG
@@ -47,15 +45,18 @@ const Tab = () => {
 class HomeHeader extends Component {
   render() {
     return (
-      <Block style={styles.headerWrap}>
-        {/* <Block style={styles.formWrap}>
+      <>
+        <NavBar title="HOME" />
+        <Block style={styles.headerWrap}>
+          {/* <Block style={styles.formWrap}>
           <TextInput
             style={styles.formInput}
             placeholder="Apa yang anda cari?"
           />
         </Block> */}
-        <Tab />
-      </Block>
+          <Tab />
+        </Block>
+      </>
     );
   }
 }
@@ -63,7 +64,7 @@ class HomeHeader extends Component {
 const styles = StyleSheet.create({
   headerWrap: {
     padding: 10,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: '#fafafa',
     paddingBottom: 0,
   },
   formInput: {

@@ -3,6 +3,7 @@ export const REGISTER = 'REGISTER';
 export const LOGOUT = 'LOGOUT';
 
 export const SET_LELANG = 'SET_LELANG';
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const FILTER_COME = 'FILTER_COME';
 export const FILTER_WILL_COME = 'FILTER_WILL_COME';
 

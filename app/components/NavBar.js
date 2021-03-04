@@ -5,10 +5,10 @@ import { Block, Text } from 'galio-framework';
 import Icon from 'react-native-vector-icons/Feather';
 import COLORS from '../constans/colors';
 
-const NavBar = ({ title, backToggle }) => {
+const NavBar = ({ title, backToggle, bgColor }) => {
   const navigation = useNavigation();
   return (
-    <Block row backgroundColor={COLORS.WHITE}>
+    <Block row backgroundColor={bgColor ? bgColor : COLORS.WHITE}>
       <Block height={50} flex={0.1} middle>
         {navigation.canGoBack() && backToggle ? (
           <TouchableHighlight

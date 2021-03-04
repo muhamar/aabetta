@@ -15,7 +15,7 @@ const LelangCard = ({ item }) => {
   return (
     <TouchableHighlight
       underlayColor={COLORS.BRIGHT_PRIMARY}
-      onPressIn={() => {
+      onPress={() => {
         if (item.come) {
           navigation.navigate('Lelang', { item });
         }
@@ -31,7 +31,7 @@ const LelangCard = ({ item }) => {
           />
         </Block>
         <Block flex>
-          <Text center size={12} style={styles.title}>
+          <Text center size={14} style={styles.title}>
             {item.nama_ikan_hias}
           </Text>
           <Text center size={10} style={styles.price}>
@@ -45,7 +45,7 @@ const LelangCard = ({ item }) => {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
+    flex: 0.5,
     margin: 5,
     padding: 5,
     backgroundColor: COLORS.WHITE,
@@ -59,13 +59,14 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').width / 2 - 25,
   },
   title: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Roboto-Bold',
     paddingVertical: 5,
     color: COLORS.DARK_BLACK,
   },
   price: {
     fontFamily: 'Roboto',
     color: COLORS.PRIMARY,
+    marginBottom: 10,
   },
 });
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Image,
   StyleSheet,
@@ -7,34 +7,57 @@ import {
   SafeAreaView,
   TouchableHighlight,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { Block, Text, Button } from 'galio-framework';
+import { Block, Text } from 'galio-framework';
 import FormTawar from '../components/FormTawar';
 
 import COLORS from '../constans/colors';
 import { baseApiUrl } from '../../config';
+import { fetchLelang } from '../store/actions/lelang';
 
 const LelangScreen = ({ route, navigation }) => {
   const { item } = route.params;
   const [win, setWin] = useState({});
+  const [listTawaran, setListTawaran] = useState([]);
   const tawaran = useSelector((state) => state.tawaran.tawaran);
 
   useEffect(() => {
     let x = tawaran.filter((i) => i.id_lelang === item.id_lelang);
-    x = x.sort((a, b) => a - b).reverse();
+    x = x.sort((a, b) => a.harga_tawar - b.harga_tawar).reverse();
     if (x) {
+      setListTawaran(x);
       setWin(x[0]);
     }
   }, [item, tawaran]);
 
+  const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    const fn = async () => {
+      try {
+        await dispatch(fetchLelang());
+      } catch (e) {
+        console.log(e.message);
+      }
+      setRefreshing(false);
+    };
+    fn();
+  }, [dispatch]);
+
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <Block style={styles.topBar}>
           <TouchableHighlight
             style={styles.backBtn}
-            onPressIn={() => navigation.goBack()}
+            onPress={() => navigation.goBack()}
             underlayColor={COLORS.BRIGHT_DANGER}>
             <Icon name="arrow-left-circle" size={25} color={COLORS.DANGER} />
           </TouchableHighlight>
@@ -58,8 +81,10 @@ const LelangScreen = ({ route, navigation }) => {
             color={COLORS.LIGHT_BLACK}
             style={{ fontFamily: 'Roboto' }}>
             IDR {item.harga_buka}{' '}
-            <Icon name="arrow-right" size={16} color={COLORS.PRIMARY} /> IDR{' '}
-            {win.harga_tawar}
+            {win ? (
+              <Icon name="arrow-right" size={16} color={COLORS.PRIMARY} />
+            ) : null}
+            {win ? 'IDR ' + win.harga_tawar : null}
           </Text>
           <Block paddingVertical={10}>
             <Text color={COLORS.LIGHT_BLACK} style={{ fontFamily: 'Roboto' }}>
@@ -67,6 +92,31 @@ const LelangScreen = ({ route, navigation }) => {
             </Text>
           </Block>
           <FormTawar item={item} />
+          <Block paddingVertical={10} marginTop={20} style={styles.card}>
+            <Block paddingVertical={10}>
+              <Text style={styles.title} center>
+                TAWRAN TERTINGGI
+              </Text>
+            </Block>
+            {listTawaran.map((x, i) => {
+              return (
+                <Block
+                  key={i}
+                  padding={10}
+                  style={{
+                    borderBottomWidth: 1,
+                    borderBottomColor: COLORS.GREY,
+                  }}>
+                  <Text color="#000" size={14}>
+                    {++i}. ID-{x.id_peserta} menawar dengan harga{' '}
+                    <Text bold color={COLORS.DARK_PRIMARY}>
+                      IDR {x.harga_tawar}
+                    </Text>
+                  </Text>
+                </Block>
+              );
+            })}
+          </Block>
         </Block>
       </ScrollView>
     </SafeAreaView>
@@ -90,6 +140,20 @@ const styles = StyleSheet.create({
     height: 45,
     backgroundColor: 'rgba(255,255,255, 0.3)',
     borderRadius: 50,
+  },
+  card: {
+    padding: 10,
+    backgroundColor: COLORS.WHITE,
+    borderBottomColor: COLORS.PRIMARY,
+    borderBottomWidth: 4,
+    borderRadius: 4,
+  },
+  title: {
+    marginTop: 10,
+    fontFamily: 'Roboto-Bold',
+    letterSpacing: 3,
+    fontSize: 20,
+    color: COLORS.LIGHT_BLACK,
   },
 });
 

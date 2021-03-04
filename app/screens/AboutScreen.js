@@ -40,7 +40,7 @@ const AboutScreen = () => {
             TENTANG AABETTA
           </Text>
         </Block>
-        <Block padding={10}>
+        <Block padding={10} paddingBottom={30} paddingHorizontal={20}>
           <Block middle>
             <Image
               style={styles.brand}
@@ -50,8 +50,8 @@ const AboutScreen = () => {
             />
           </Block>
           <Text
-            size={18}
-            style={{ fontFamily: 'Roboto' }}
+            size={16}
+            style={{ fontFamily: 'Roboto-Light' }}
             color={COLORS.DARK_BLACK}>
             {about.text}
           </Text>

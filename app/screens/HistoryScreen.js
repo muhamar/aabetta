@@ -28,7 +28,7 @@ const HistoryScreen = () => {
             HISTORY TAWARAN
           </Text>
         </Block> */}
-        <Block paddingHorizontal={10}>
+        <Block padding={10}>
           {items.map((item, i) => (
             <HistoryList key={i} item={item} />
           ))}
